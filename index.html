@@ -6,16 +6,17 @@
     <title>Data Science Training Journey | GNDEC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0e27;
-            --secondary: #1a1f3a;
-            --accent: #f4c430;
-            --accent-2: #ff6b35;
-            --text: #e8e6e3;
-            --text-dim: #a8a29e;
-            --glow: rgba(244, 196, 48, 0.2);
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --accent-cyan: #00d9ff;
+            --accent-purple: #b537f2;
+            --accent-pink: #ff2e97;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --card-bg: rgba(26, 26, 46, 0.7);
         }
 
         * {
@@ -25,39 +26,40 @@
         }
 
         body {
-            font-family: 'Source Sans 3', sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
-            min-height: 100vh;
         }
 
-        body::before {
-            content: '';
+        /* Animated Background */
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, var(--glow) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
-            pointer-events: none;
             z-index: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 217, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(181, 55, 242, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 46, 151, 0.1) 0%, transparent 50%);
         }
 
-        .grain {
+        .grid-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: 1;
-            opacity: 0.5;
+            pointer-events: none;
         }
 
         .container {
@@ -70,97 +72,111 @@
 
         /* Header */
         header {
-            padding: 60px 0 40px;
+            padding: 80px 0 60px;
             text-align: center;
             animation: fadeInDown 1s ease-out;
         }
 
         .logo-container {
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
+            margin-bottom: 40px;
+            animation: float 4s ease-in-out infinite;
         }
 
         .logo-container img {
-            height: 80px;
-            filter: brightness(1.1) drop-shadow(0 4px 20px var(--glow));
+            height: 90px;
+            filter: brightness(1.2) drop-shadow(0 0 30px rgba(0, 217, 255, 0.5));
+        }
+
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 50%, var(--accent-pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-transform: uppercase;
             animation: fadeInUp 1s ease-out 0.2s backwards;
+            line-height: 1.1;
         }
 
         .subtitle {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'Courier Prime', monospace;
             font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: var(--text-dim);
+            color: var(--accent-cyan);
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 8px;
+            letter-spacing: 0.3em;
+            margin-bottom: 15px;
             animation: fadeInUp 1s ease-out 0.3s backwards;
         }
 
         .duration {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--accent);
-            font-weight: 600;
-            margin-top: 15px;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-top: 20px;
             animation: fadeInUp 1s ease-out 0.4s backwards;
         }
 
-        /* Main Content */
+        .duration strong {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+
+        /* Main */
         main {
-            padding: 60px 0 120px;
+            padding: 80px 0 120px;
         }
 
         .section-header {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 4rem);
             text-align: center;
-            margin-bottom: 50px;
-            color: var(--text);
+            margin-bottom: 70px;
+            color: var(--text-primary);
             position: relative;
-            padding-bottom: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
-        .section-header::after {
+        .section-header::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 2px;
         }
 
-        /* Day Grid */
+        /* Days Grid */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
         }
 
         .day-card {
-            background: rgba(26, 31, 58, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(244, 196, 48, 0.1);
-            border-radius: 16px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 12px;
             padding: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.6s ease-out backwards;
-            animation-delay: calc(var(--index) * 0.03s);
+            animation-delay: calc(var(--index) * 0.04s);
             cursor: pointer;
         }
 
@@ -171,97 +187,111 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(244, 196, 48, 0.05) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(181, 55, 242, 0.1) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
         }
 
+        .day-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            transition: height 0.4s ease;
+        }
+
         .day-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(244, 196, 48, 0.2);
+            transform: translateY(-10px) translateX(5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(0, 217, 255, 0.3),
+                inset 0 0 0 1px rgba(0, 217, 255, 0.2);
         }
 
         .day-card:hover::before {
             opacity: 1;
         }
 
-        .day-card:active {
-            transform: translateY(-4px);
+        .day-card:hover::after {
+            height: 100%;
         }
 
         .day-link {
             display: block;
-            padding: 30px;
+            padding: 35px;
             color: inherit;
             text-decoration: none;
-            width: 100%;
-            height: 100%;
             position: relative;
             z-index: 2;
         }
 
         .day-number {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'Courier Prime', monospace;
             font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 12px;
             text-transform: uppercase;
         }
 
         .day-title {
-            font-size: 1.1rem;
-            color: var(--text);
+            font-size: 1.2rem;
+            color: var(--text-primary);
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             line-height: 1.4;
         }
 
         .view-notes {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--text-dim);
+            gap: 10px;
+            color: var(--text-secondary);
             font-size: 0.9rem;
+            font-weight: 400;
             transition: all 0.3s ease;
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'Courier Prime', monospace;
         }
 
         .day-card:hover .view-notes {
-            color: var(--accent);
-            gap: 12px;
+            color: var(--accent-cyan);
+            gap: 15px;
         }
 
         .view-notes::after {
             content: '→';
+            font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
 
         .day-card:hover .view-notes::after {
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
-        /* Projects Section */
+        /* Projects */
         .projects-section {
-            margin-top: 80px;
+            margin-top: 100px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
         }
 
         .project-card {
-            background: rgba(26, 31, 58, 0.8);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(181, 55, 242, 0.3);
+            border-radius: 16px;
+            padding: 50px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -269,94 +299,107 @@
         .project-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(181, 55, 242, 0.15) 0%, transparent 60%);
+            transition: all 0.6s ease;
             pointer-events: none;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent-2);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 107, 53, 0.3);
+        .project-card:hover::before {
+            top: -50%;
+            left: -50%;
         }
 
-        .project-card:hover::before {
-            opacity: 1;
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--accent-purple);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 60px rgba(181, 55, 242, 0.4),
+                inset 0 0 0 2px rgba(181, 55, 242, 0.3);
         }
 
         .project-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-2);
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            margin-bottom: 12px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
 
         .project-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: var(--text);
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.3;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 28px;
-            background: linear-gradient(135deg, var(--accent-2), #ff8555);
-            color: var(--primary);
+            gap: 12px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: var(--text-primary);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 15px;
             position: relative;
             z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .project-link:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+            transform: translateX(8px);
+            box-shadow: 0 10px 30px rgba(181, 55, 242, 0.5);
+            gap: 16px;
         }
 
-        .project-link:active {
-            transform: translateX(2px);
+        .project-link::after {
+            content: '→';
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover::after {
+            transform: translateX(3px);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 60px 0 40px;
-            border-top: 1px solid rgba(244, 196, 48, 0.1);
-            margin-top: 80px;
+            padding: 80px 0 50px;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            margin-top: 100px;
         }
 
         .footer-text {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
         }
 
         .footer-link {
-            color: var(--accent);
+            color: var(--accent-cyan);
             text-decoration: none;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .footer-link:hover {
-            color: var(--accent-2);
+            color: var(--accent-purple);
             text-decoration: underline;
         }
 
@@ -364,7 +407,7 @@
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(-40px);
             }
             to {
                 opacity: 1;
@@ -375,7 +418,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -388,7 +431,7 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
         }
 
@@ -400,7 +443,7 @@
 
             .days-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
 
             .projects-grid {
@@ -408,15 +451,19 @@
             }
 
             header {
-                padding: 40px 0 30px;
+                padding: 60px 0 40px;
             }
 
             .day-link {
-                padding: 25px;
+                padding: 28px;
             }
 
             .project-card {
-                padding: 30px;
+                padding: 35px;
+            }
+
+            .section-header {
+                margin-bottom: 50px;
             }
         }
 
@@ -426,22 +473,22 @@
             }
 
             .day-link {
-                padding: 20px;
+                padding: 25px;
             }
 
             .day-title {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
-            .day-number {
-                font-size: 0.8rem;
+            .project-title {
+                font-size: 1.8rem;
             }
         }
 
-        /* Touch device optimizations */
+        /* Touch optimizations */
         @media (hover: none) and (pointer: coarse) {
             .day-card:active {
-                transform: translateY(-4px) scale(0.98);
+                transform: translateY(-5px) scale(0.98);
             }
 
             .project-link:active {
@@ -451,7 +498,8 @@
     </style>
 </head>
 <body>
-    <div class="grain"></div>
+    <div class="animated-bg"></div>
+    <div class="grid-overlay"></div>
     
     <div class="container">
         <header>
@@ -461,16 +509,18 @@
                 </a>
             </div>
             <p class="subtitle">Training Report TR-103</p>
-            <h1>Data Science Journey</h1>
-            <p class="duration">29-Day Intensive Training Program</p>
+            <div class="title-wrapper">
+                <h1>Data Science<br>Journey</h1>
+            </div>
+            <p class="duration"><strong>29-Day</strong> Intensive Training Program</p>
         </header>
 
         <main>
             <section class="training-days">
-                <h2 class="section-header">Daily Learning Progress</h2>
+                <h2 class="section-header">Daily Progress</h2>
                 <div class="days-grid">
                     <div class="day-card" style="--index: 0">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-23.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-23.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 01</div>
                             <div class="day-title">Introduction to Data Science</div>
                             <span class="view-notes">View Notes</span>
@@ -478,7 +528,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 1">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-24.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-24.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 02</div>
                             <div class="day-title">Python and Jupyter Environment Setup</div>
                             <span class="view-notes">View Notes</span>
@@ -486,7 +536,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 2">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-25.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-25.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 03</div>
                             <div class="day-title">Python Basics and Data Types</div>
                             <span class="view-notes">View Notes</span>
@@ -494,7 +544,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 3">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-26.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-26.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 04</div>
                             <div class="day-title">Control Flow: Conditionals and Loops</div>
                             <span class="view-notes">View Notes</span>
@@ -502,7 +552,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 4">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-27.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-27.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 05</div>
                             <div class="day-title">Functions and Modular Programming</div>
                             <span class="view-notes">View Notes</span>
@@ -510,7 +560,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 5">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-28.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-28.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 06</div>
                             <div class="day-title">Python Data Structures</div>
                             <span class="view-notes">View Notes</span>
@@ -518,7 +568,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 6">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-29.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-29.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 07</div>
                             <div class="day-title">File Handling and CSV Processing</div>
                             <span class="view-notes">View Notes</span>
@@ -526,7 +576,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 7">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-06-30.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-06-30.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 08</div>
                             <div class="day-title">NumPy Fundamentals</div>
                             <span class="view-notes">View Notes</span>
@@ -534,7 +584,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 8">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-01.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-01.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 09</div>
                             <div class="day-title">Advanced NumPy Operations</div>
                             <span class="view-notes">View Notes</span>
@@ -542,7 +592,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 9">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-02.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-02.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 10</div>
                             <div class="day-title">Pandas Series and DataFrame Basics</div>
                             <span class="view-notes">View Notes</span>
@@ -550,7 +600,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 10">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-03.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-03.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 11</div>
                             <div class="day-title">Data Cleaning Using Pandas</div>
                             <span class="view-notes">View Notes</span>
@@ -558,7 +608,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 11">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-04.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-04.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 12</div>
                             <div class="day-title">Exploratory Data Analysis</div>
                             <span class="view-notes">View Notes</span>
@@ -566,7 +616,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 12">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-05.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-05.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 13</div>
                             <div class="day-title">Data Visualization with Matplotlib and Seaborn</div>
                             <span class="view-notes">View Notes</span>
@@ -574,7 +624,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 13">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-06.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-06.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 14</div>
                             <div class="day-title">EDA and Visualization Practice</div>
                             <span class="view-notes">View Notes</span>
@@ -582,7 +632,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 14">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-07.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-07.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 15</div>
                             <div class="day-title">Descriptive Statistics and Distributions</div>
                             <span class="view-notes">View Notes</span>
@@ -590,7 +640,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 15">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-08.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-08.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 16</div>
                             <div class="day-title">Probability Concepts and Correlation Analysis</div>
                             <span class="view-notes">View Notes</span>
@@ -598,7 +648,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 16">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-09.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-09.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 17</div>
                             <div class="day-title">Introduction to Machine Learning</div>
                             <span class="view-notes">View Notes</span>
@@ -606,7 +656,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 17">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-10.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-10.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 18</div>
                             <div class="day-title">Linear Regression Modeling</div>
                             <span class="view-notes">View Notes</span>
@@ -614,7 +664,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 18">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-11.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-11.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 19</div>
                             <div class="day-title">Classification: Logistic Regression and KNN</div>
                             <span class="view-notes">View Notes</span>
@@ -622,7 +672,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 19">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-12.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-12.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 20</div>
                             <div class="day-title">Model Evaluation and Overfitting</div>
                             <span class="view-notes">View Notes</span>
@@ -630,7 +680,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 20">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-13.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-13.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 21</div>
                             <div class="day-title">Introduction to Neural Networks</div>
                             <span class="view-notes">View Notes</span>
@@ -638,7 +688,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 21">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-14.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-14.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 22</div>
                             <div class="day-title">Neural Network Implementation Basics</div>
                             <span class="view-notes">View Notes</span>
@@ -646,7 +696,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 22">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-15.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-15.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 23</div>
                             <div class="day-title">Mini Project: Dataset Selection</div>
                             <span class="view-notes">View Notes</span>
@@ -654,7 +704,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 23">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-16.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-16.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 24</div>
                             <div class="day-title">Data Preprocessing and Feature Engineering</div>
                             <span class="view-notes">View Notes</span>
@@ -662,7 +712,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 24">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-17.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-17.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 25</div>
                             <div class="day-title">Baseline Model Training</div>
                             <span class="view-notes">View Notes</span>
@@ -670,7 +720,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 25">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-18.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-18.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 26</div>
                             <div class="day-title">Model Tuning and Comparison</div>
                             <span class="view-notes">View Notes</span>
@@ -678,7 +728,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 26">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-19.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-19.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 27</div>
                             <div class="day-title">Result Analysis and Limitations</div>
                             <span class="view-notes">View Notes</span>
@@ -686,7 +736,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 27">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-20.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-20.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 28</div>
                             <div class="day-title">Project Documentation and Report Writing</div>
                             <span class="view-notes">View Notes</span>
@@ -694,7 +744,7 @@
                     </div>
 
                     <div class="day-card" style="--index: 28">
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/diary/2025-07-21.md" class="day-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/diary/2025-07-21.md" class="day-link" target="_blank" rel="noopener noreferrer">
                             <div class="day-number">Day 29</div>
                             <div class="day-title">Final Review and Presentation</div>
                             <span class="view-notes">View Notes</span>
@@ -709,7 +759,7 @@
                     <div class="project-card">
                         <div class="project-label">Data Science Project</div>
                         <h3 class="project-title">NEWS Analysis System</h3>
-                        <a href="https://github.com/DevxAman/TR_103/blob/main/automated_extraction_and_sentiment_annotation_of_news_articles_from_pdfs.py" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Arsh-codes14/TR_103/blob/main/automated_extraction_and_sentiment_annotation_of_news_articles_from_pdfs.py" class="project-link" target="_blank" rel="noopener noreferrer">
                             Explore Project
                         </a>
                     </div>
@@ -728,7 +778,7 @@
     </div>
 
     <script>
-        // Smooth scroll for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -742,7 +792,7 @@
             });
         });
 
-        // Intersection Observer for scroll animations
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -757,12 +807,11 @@
             });
         }, observerOptions);
 
-        // Observe all cards
         document.querySelectorAll('.day-card, .project-card').forEach(card => {
             observer.observe(card);
         });
 
-        // Add click feedback for touch devices
+        // Touch feedback
         if ('ontouchstart' in window) {
             document.querySelectorAll('.day-card, .project-card').forEach(card => {
                 card.addEventListener('touchstart', function() {
@@ -773,11 +822,6 @@
                 });
             });
         }
-
-        // Preload animations on page load
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
     </script>
 </body>
 </html>
